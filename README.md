@@ -1,223 +1,230 @@
-# 👁️ Pediatric Myopia Risk Prediction using Machine Learnin
+# 👁️ Pediatric Myopia Risk Prediction using Machine Learning
 
-![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white)
-![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.2%2B-orange?logo=scikit-learn&logoColor=white)
-![Pandas](https://img.shields.io/badge/Pandas-1.5%2B-150458?logo=pandas&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-1.24%2B-013243?logo=numpy&logoColor=white)
-![Matplotlib](https://img.shields.io/badge/Matplotlib-3.7%2B-11557c?logo=plotly&logoColor=white)
-![Seaborn](https://img.shields.io/badge/Seaborn-0.12%2B-3776AB?logo=python&logoColor=white)
+<div align="center">
+
+![Python](https://img.shields.io/badge/Python-3.9+-blue?logo=python&logoColor=white)
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.2+-orange?logo=scikit-learn&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-1.5+-150458?logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-1.24+-013243?logo=numpy&logoColor=white)
+![Seaborn](https://img.shields.io/badge/Seaborn-0.12+-3776AB?logo=python&logoColor=white)
 ![SMOTE](https://img.shields.io/badge/SMOTE-Imbalanced--learn-9B59B6?logo=python&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green)
+![Kaggle](https://img.shields.io/badge/Dataset-Kaggle-20BEFF?logo=kaggle&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Completed-success)
+![Domain](https://img.shields.io/badge/Domain-Ophthalmology-red)
+![Research-Level](https://img.shields.io/badge/Level-Clinical%20AI%20Research-critical)
+
+</div>
+
 ---
 
 ## 🧠 Abstract
 
-This study presents a clinical machine learning framework for predicting the risk of childhood myopia using behavioral, environmental, and ocular biometric variables. The model integrates **Logistic Regression** with **SMOTE**-based class balancing to address dataset imbalance and enhance predictive performance in high-risk pediatric populations.
-
-**Key clinical utility:** Early identification of at-risk individuals enables preventive interventions that can significantly reduce long-term visual impairment.
-
----
-
-## 👁️ Clinical Motivation
-
-Childhood myopia is a rapidly increasing **global public health concern**, with prevalence rates projected to reach **50% of the world population by 2050** (Holden et al., 2016). 
-
-This project aims to support **evidence-based clinical decision-making** through interpretable machine learning models that empower eye care professionals to:
-- Identify at-risk children earlier
-- Recommend targeted lifestyle modifications
-- Monitor progression risk over time
+This project presents a **clinical-grade machine learning framework** for predicting childhood myopia risk using behavioral, environmental, and ocular biometric variables. The model focuses on interpretability, clinical relevance, and early risk stratification for preventive ophthalmic care.
 
 ---
 
 ## 📊 Dataset
 
-| Feature | Description |
-|---------|-------------|
-| 👶 **Samples** | 618 pediatric records |
-| 📌 **Features** | 7 clinical + behavioral variables |
-| ⚖️ **Class Distribution** | 537 non-myopic (87%) vs 81 myopic (13%) |
-| 🧪 **Source** | OLSM (Orinda Longitudinal Study of Myopia) |
+This study uses a publicly available dataset from Kaggle, originally derived from the **Orinda Longitudinal Study of Myopia (OLSM)**.
 
-**Features used:**
-- `READHR` - Reading hours per week
-- `TVHR` - Television hours per week
-- `COMPHR` - Computer hours per week
-- `SPORTHR` - Outdoor sports hours per week
-- `AGE` - Age at baseline
-- `SPHEQ` - Spherical equivalent refraction
-- `AL` - Axial length (mm)
+### 📌 Dataset Source
+- 🔗 Kaggle Dataset: https://www.kaggle.com/datasets/lespine/myopia-dataset  
+- 👶 Pediatric population dataset  
+- 📊 618 clinical records  
+- ⚖️ Binary outcome: Myopic vs Non-Myopic  
+- 🧪 Features: behavioral + demographic + ocular measurements  
 
----
+### 📥 How to Use Dataset
 
-## ⚙️ Methodology
+```bash
+# Download directly using Kaggle API
+kaggle datasets download -d lespine/myopia-dataset
 
-```
+or in Python:
 
-┌─────────────────────────────────────────────────────────────┐
-│                  METHODOLOGY PIPELINE                      │
-├─────────────────────────────────────────────────────────────┤
-│  1. Raw Data (myopia.csv)                                  │
-│         ↓                                                  │
-│  2. Feature Engineering                                    │
-│     • screen_total = TVHR + COMPHR                        │
-│     • near_work = READHR + STUDYHR                        │
-│     • outdoor_balance = SPORTHR                           │
-│     • screen_to_outdoor_ratio = screen_total/(outdoor+0.1)│
-│         ↓                                                  │
-│  3. SMOTE Oversampling (balancing minority class)         │
-│         ↓                                                  │
-│  4. Train/Test Split (80/20)                               │
-│         ↓                                                  │
-│  5. Logistic Regression (max_iter=1000)                    │
-│         ↓                                                  │
-│  6. Evaluation & Visualization                              │
-└─────────────────────────────────────────────────────────────┘
+import opendatasets as od
+od.download("https://www.kaggle.com/datasets/lespine/myopia-dataset")
 
-```
 
 ---
 
-## 📈 Model Performance
+⚙️ Methodology Pipeline
 
-| Metric | Score |
-|--------|-------|
-| **Accuracy** | 82% |
-| **Precision (Myopia)** | 0.81 |
-| **Recall (Myopia)** | 0.84 |
-| **F1-Score** | 0.83 |
-| **AUC** | ~0.82 |
+Data Collection (Kaggle OLSM-derived dataset)
+        ↓
+Data Cleaning & Preprocessing
+        ↓
+Exploratory Data Analysis (EDA)
+        ↓
+Feature Engineering
+    - screen_total
+    - near_work
+    - outdoor_balance
+    - screen_to_outdoor_ratio
+        ↓
+Class Imbalance Handling (SMOTE)
+        ↓
+Logistic Regression Model Training
+        ↓
+Evaluation (Train/Test Split 80/20)
+        ↓
+Clinical Interpretation & Visualization
 
----
-
-## 👁️ Key Clinical Findings
-
-| Finding | Interpretation |
-|---------|----------------|
-| 📱 **Screen Exposure** | Higher screen time → increased myopia risk |
-| 📚 **Near-work Activities** | Strongly associated with myopia progression |
-| 🌳 **Outdoor Exposure** | Strongly protective against myopia |
-| ⚠️ **Screen-to-Outdoor Ratio** | The **most powerful** predictive indicator |
-
-> **Clinical Insight:** Lifestyle imbalance, rather than isolated screen time, is a more robust determinant of pediatric myopia risk. This supports the need for **integrated behavioral screening** in primary eye care.
-
----
-
-## 📊 Visual Outputs
-
-| Output | Description |
-|--------|-------------|
-| 📈 **ROC Curve** | Model discriminative ability (AUC ~0.82) |
-| 🔢 **Confusion Matrix** | Classification performance visualization |
-| 📊 **Feature Importance** | Logistic regression coefficients |
-| 🌡️ **Correlation Heatmap** | Feature inter-relationships |
-| 📦 **Risk Score Distribution** | Myopia risk distribution across groups |
 
 ---
 
-## 🛠️ Tech Stack
+📈 Model Performance
 
-```python
-# Core Libraries
-import pandas as pd          # Data manipulation
-import numpy as np           # Numerical operations
+Metric	Score
 
-# Machine Learning
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
+Accuracy	82%
+Precision	0.81
+Recall	0.84
+F1-score	0.83
+ROC-AUC	~0.82
 
-# Imbalanced Learning
-from imblearn.over_sampling import SMOTE
 
-# Visualization
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-# Model Serialization
-import joblib
-```
 
 ---
 
-💾 Outputs
+👁️ Clinical Interpretation
 
-```
-📁 outputs/
-├── group_results.csv           # Feature averages by myopia status
-├── confusion_matrix.csv        # Confusion matrix values
-├── roc_curve.png              # ROC curve plot
-├── feature_importance.png     # Feature importance bar chart
-└── results.txt                # Summary statistics
+The model indicates that behavioral imbalance between near-work, screen exposure, and outdoor activity plays a major role in pediatric myopia risk.
 
-📁 models/
-└── logistic_model.pkl         # Trained Logistic Regression model
-```
+Key clinical insights:
+
+📱 High screen exposure increases risk
+
+📚 Near-work activities contribute significantly
+
+🌳 Outdoor activity is strongly protective
+
+⚠️ Screen-to-outdoor ratio is the strongest predictor
+
+
+
+---
+
+📊 Visual Results
+
+1️⃣ ROC Curve (Model Performance)
+
+
+
+
+---
+
+2️⃣ Feature Importance (Logistic Regression Coefficients)
+
+
+
+
+---
+
+3️⃣ Correlation Heatmap (Feature Relationships)
+
+
+
+
+---
+
+🛠️ Technologies Used
+
+Python
+
+Pandas
+
+NumPy
+
+Scikit-learn
+
+Seaborn
+
+Matplotlib
+
+Imbalanced-learn (SMOTE)
+
+Jupyter Notebook
+
+Joblib
+
+
+
+---
+
+💾 Project Structure
+
+myopia-project/
+│
+├── data/
+│   └── myopia.csv
+│
+├── outputs/
+│   ├── roc_curve.png
+│   ├── feature_importance.png
+│   └── correlation_heatmap.png
+│
+├── models/
+│   └── logistic_model.pkl
+│
+├── notebooks/
+├── src/
+└── README.md
+
 
 ---
 
 🚀 Future Work
 
-· 🔬 Deep Learning Integration - Neural networks for complex pattern recognition
-· 🌍 Multi-center Validation - External validation on diverse populations
-· ⏳ Temporal Progression Modeling - Longitudinal risk prediction
-· 🏥 Clinical Decision Support Tool - Web-based deployment for clinicians
-· 🧬 Genetic Interaction Analysis - Gene-environment interactions in myopia
+Deep learning-based risk prediction models
+
+Multi-center validation studies
+
+Longitudinal progression modeling
+
+Clinical decision support system deployment
+
+Integration with ophthalmic screening tools
+
+
 
 ---
 
 📌 Ethical Statement
 
-This project uses anonymized research data from the Orinda Longitudinal Study of Myopia (OLSM) and is intended for academic and clinical research purposes only. No identifiable patient data is included. All analyses comply with ethical standards for secondary research data.
+This project uses a publicly available and fully anonymized Kaggle dataset derived from the Orinda Longitudinal Study of Myopia (OLSM). No personally identifiable information is included. The study is conducted strictly for academic and machine learning research purposes in ophthalmology.
+
 
 ---
 
 👤 Author
-Sepideh Moafi 
 
-Aspiring Optometrist | Clinical AI Researcher
+Clinical AI Researcher | Aspiring Optometrist
 
-· 🎯 Focus: Pediatric Myopia • AI in Ophthalmology • Preventive Eye Care
+Focus Areas:
+
+Pediatric Myopia
+
+Preventive Ophthalmology
+
+Clinical Machine Learning
+
+Evidence-Based Eye Care
+
 
 
 ---
 
-📝 Citation
+⭐ Acknowledgment
 
-If you use this work, please cite:
+Orinda Longitudinal Study of Myopia (OLSM) and Kaggle community for providing open-access research data.
 
-```bibtex
-@article{myopia2024,
-  author = {[Your Name]},
-  title = {Pediatric Myopia Risk Prediction using Machine Learning},
-  year = {2024},
-  journal = {GitHub Repository},
-  url = {https://github.com/yourusername/myopia-prediction}
-}
+
+---
+
+<div align="center">Advancing Pediatric Eye Care Through Interpretable Artificial Intelligence
+
+</div>
 ```
-
 ---
-
-🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (git checkout -b feature/AmazingFeature)
-3. Commit your changes (git commit -m 'Add some AmazingFeature')
-4. Push to the branch (git push origin feature/AmazingFeature)
-5. Open a Pull Request
-
----
-
-📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-⭐ If you found this project useful, please star it on GitHub!
-
-```
-
