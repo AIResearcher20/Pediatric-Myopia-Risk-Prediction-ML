@@ -1,0 +1,8 @@
+result = df.groupby("MYOPIC")[[
+    "screen_total",
+    "near_work",
+    "outdoor_balance",
+    "screen_to_outdoor_ratio"
+]].mean()
+
+result.to_csv("outputs/group_results.csv")
