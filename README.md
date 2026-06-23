@@ -1,5 +1,4 @@
-```markdown
-# 👁️ Pediatric Myopia Risk Prediction using Machine Learning
+# 👁️ Pediatric Myopia Risk Prediction using Machine Learnin
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white)
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.2%2B-orange?logo=scikit-learn&logoColor=white)
@@ -9,12 +8,8 @@
 ![Seaborn](https://img.shields.io/badge/Seaborn-0.12%2B-3776AB?logo=python&logoColor=white)
 ![SMOTE](https://img.shields.io/badge/SMOTE-Imbalanced--learn-9B59B6?logo=python&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green?logo=opensourceinitiative&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Completed-success?logo=github&logoColor=white)
-![PRs](https://img.shields.io/badge/PRs-Welcome-brightgreen?logo=github&logoColor=white)
-![Last Commit](https://img.shields.io/github/last-commit/yourusername/myopia-prediction?logo=github)
-![Stars](https://img.shields.io/github/stars/yourusername/myopia-prediction?style=social)
-
+![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Status-Completed-success)
 ---
 
 ## 🧠 Abstract
