@@ -1,0 +1,12 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+importance = model.coef_[0]
+features = X.columns
+
+plt.figure(figsize=(8,5))
+plt.barh(features, importance)
+plt.title("Feature Importance - Myopia Risk")
+
+plt.savefig("outputs/feature_importance.png")
+plt.close()
